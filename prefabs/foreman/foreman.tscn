@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bia21mchvd5gy"]
+
+[ext_resource type="Script" path="res://prefabs/foreman/foreman_parent.gd" id="1_16mpk"]
+[ext_resource type="Texture2D" uid="uid://b0ofvi01eayu5" path="res://sprits/foreman_idle_1.png" id="1_imyvn"]
+[ext_resource type="Script" path="res://prefabs/foreman/foreman.gd" id="1_rudm8"]
+[ext_resource type="Texture2D" uid="uid://b2qg15vwk8hwr" path="res://sprits/foreman_flipped.png" id="3_mtv48"]
+[ext_resource type="Texture2D" uid="uid://bruu1ybjq6ux6" path="res://sprits/foreman_land.png" id="5_b8qu3"]
+[ext_resource type="AudioStream" uid="uid://0w4jcrenbmma" path="res://audio/sfx/git.ogg" id="6_r83qn"]
+[ext_resource type="AudioStream" uid="uid://byhfijetbsepk" path="res://audio/sfx/jump.wav" id="7_xj1gd"]
+[ext_resource type="AudioStream" uid="uid://bvotgo8kljsl6" path="res://audio/sfx/drillB.wav" id="8_ak20f"]
+
+[sub_resource type="Curve2D" id="Curve2D_7pe3m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, -33, 0, 0, 0, 0, 20, -42, 0, 0, 0, 0, 35, -36, 0, 0, 0, 0, 39, -16, 0, 0, 0, 0, 23, -13, 0, 0, 0, 0, 18, -26, 0, 0, 0, 0, 28, -43, 0, 0, 0, 0, 37, -55, 0, 0, 0, 0, 46, -60, 0, 0, 0, 0, 58, -66, 0, 0, 0, 0, 68, -71, 0, 0, 0, 0, 75, -72, 0, 0, 0, 0, 77, -73, 0, 0, 0, 0, 77, -64, 0, 0, 0, 0, 77, -56)
+}
+point_count = 16
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_we4ex"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0dt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mtv48")
+}],
+"loop": true,
+"name": &"flip",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_imyvn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b8qu3")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_16mpk")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7pe3m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" groups=["dug_dirt"]]
+rotates = false
+loop = false
+
+[node name="Foreman" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+script = ExtResource("1_rudm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Foreman"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_we4ex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Foreman"]
+sprite_frames = SubResource("SpriteFrames_m0dt8")
+animation = &"idle"
+
+[node name="GitAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+stream = ExtResource("6_r83qn")
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+stream = ExtResource("7_xj1gd")
+
+[node name="DrillAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+stream = ExtResource("8_ak20f")
+
+[connection signal="finished_jump" from="Path2D/PathFollow2D/Foreman" to="." method="_on_foreman_finished_jump"]
+[connection signal="landed" from="Path2D/PathFollow2D/Foreman" to="." method="_on_foreman_landed"]
+[connection signal="reset_pressed" from="Path2D/PathFollow2D/Foreman" to="." method="_on_foreman_reset_pressed"]
+[connection signal="started_drilling" from="Path2D/PathFollow2D/Foreman" to="." method="_on_foreman_started_drilling"]
+[connection signal="finished" from="Path2D/PathFollow2D/Foreman/DrillAudio" to="Path2D/PathFollow2D/Foreman" method="_on_drill_audio_finished"]

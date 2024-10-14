@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://duqlhyoh1g7ny"]
+
+[ext_resource type="Script" path="res://prefabs/ring/ring.gd" id="1_k2ffe"]
+[ext_resource type="Texture2D" uid="uid://cmpufq2fk4lwy" path="res://sprits/ring_lower.png" id="1_oq37c"]
+[ext_resource type="Texture2D" uid="uid://bgkn36xj7pcot" path="res://sprits/ring_upper.png" id="2_l304k"]
+[ext_resource type="AudioStream" uid="uid://darsjw5oq0tds" path="res://audio/sfx/ring_pass.wav" id="4_qq8fo"]
+
+[sub_resource type="Curve2D" id="Curve2D_ylkn6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -80, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, -80, 0)
+}
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvihj"]
+radius = 3.0
+height = 48.0
+
+[node name="Ring" type="Node2D"]
+script = ExtResource("1_k2ffe")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ylkn6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-80, 0)
+progress = 320.0
+rotates = false
+
+[node name="RingLower" type="Sprite2D" parent="Path2D/PathFollow2D"]
+z_index = 1
+position = Vector2(0, 4)
+texture = ExtResource("1_oq37c")
+
+[node name="RingUpper" type="Sprite2D" parent="Path2D/PathFollow2D"]
+z_index = -1
+position = Vector2(0, -4)
+texture = ExtResource("2_l304k")
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+position = Vector2(0.291702, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rvihj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qq8fo")
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="." method="_on_area_2d_body_entered"]

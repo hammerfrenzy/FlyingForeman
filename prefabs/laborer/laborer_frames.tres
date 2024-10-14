@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://yk7bv3psgueb"]
+
+[ext_resource type="Texture2D" uid="uid://bu175k783yjll" path="res://sprits/laborer_dig_1.png" id="1_yclsu"]
+[ext_resource type="Texture2D" uid="uid://31vv8vr8s5un" path="res://sprits/laborer_dig_2.png" id="2_7cic4"]
+[ext_resource type="Texture2D" uid="uid://caxj48qg12ddi" path="res://sprits/laborer_idle.png" id="3_qe2qh"]
+[ext_resource type="Texture2D" uid="uid://cg7vxqpc4dbd4" path="res://sprits/laborer_idle_1.png" id="4_noekg"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yclsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7cic4")
+}],
+"loop": true,
+"name": &"dig",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qe2qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_noekg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]

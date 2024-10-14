@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bat4xudfmpn3f"
+path="res://.godot/imported/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.ogg-7653fb5449abd47c1873f22eda271bc8.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/bgm/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.ogg"
+dest_files=["res://.godot/imported/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.ogg-7653fb5449abd47c1873f22eda271bc8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

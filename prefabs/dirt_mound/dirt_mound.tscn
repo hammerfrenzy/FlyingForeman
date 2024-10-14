@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://5fotyekauvmt"]
+
+[ext_resource type="Texture2D" uid="uid://bgb87mw73j8nk" path="res://sprits/dirt.png" id="1_fp4o0"]
+
+[node name="DirtMound" type="Node2D"]
+
+[node name="DirtRow1" type="Sprite2D" parent="."]
+texture = ExtResource("1_fp4o0")
+
+[node name="DirtRow2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 12)
+texture = ExtResource("1_fp4o0")
+region_enabled = true
+region_rect = Rect2(8, 8, 24, 16)
+
+[node name="DirtRow3" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 32)
+texture = ExtResource("1_fp4o0")
+region_enabled = true
+region_rect = Rect2(8, 8, 40, 24)
+
+[node name="DirtRow4" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 60)
+texture = ExtResource("1_fp4o0")
+region_enabled = true
+region_rect = Rect2(8, 8, 64, 32)
+
+[node name="DirtRow5" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 1326)
+texture = ExtResource("1_fp4o0")
+region_enabled = true
+region_rect = Rect2(8, 8, 88, 2500)

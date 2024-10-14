@@ -1,0 +1,242 @@
+[gd_scene load_steps=25 format=3 uid="uid://b5aq56fqnv4wu"]
+
+[ext_resource type="PackedScene" uid="uid://c8km5xvwn41sj" path="res://prefabs/laborer/laborer.tscn" id="1_5h1cq"]
+[ext_resource type="Script" path="res://levels/game.gd" id="1_u0ysf"]
+[ext_resource type="Texture2D" uid="uid://cdr3bv4k1m4ll" path="res://sprits/grass_to_dirt.png" id="2_hspl4"]
+[ext_resource type="AudioStream" uid="uid://cigjy82xe4qg6" path="res://audio/bgm/Juhani Junkala [Chiptune Adventures] 2. Stage 2.ogg" id="2_u42wh"]
+[ext_resource type="Texture2D" uid="uid://cvxlu87mphrjn" path="res://sprits/grass.png" id="3_lgrkf"]
+[ext_resource type="Texture2D" uid="uid://bgb87mw73j8nk" path="res://sprits/dirt.png" id="4_te3va"]
+[ext_resource type="PackedScene" uid="uid://5fotyekauvmt" path="res://prefabs/dirt_mound/dirt_mound.tscn" id="5_jt253"]
+[ext_resource type="PackedScene" uid="uid://bia21mchvd5gy" path="res://prefabs/foreman/foreman.tscn" id="6_bxjrx"]
+[ext_resource type="PackedScene" uid="uid://c5y3lm1ekin8i" path="res://prefabs/ui/instructions/dig_instructions.tscn" id="8_uvoqw"]
+[ext_resource type="PackedScene" uid="uid://dymc5j5t2mgda" path="res://prefabs/ui/instructions/fly_instructions.tscn" id="9_vs4fp"]
+[ext_resource type="PackedScene" uid="uid://cvqnn88iyev7d" path="res://prefabs/ui/instructions/dig_to_start.tscn" id="10_vm6p5"]
+[ext_resource type="PackedScene" uid="uid://dpvb4fcy14nar" path="res://prefabs/ui/instructions/ring_instructions.tscn" id="11_a0uyl"]
+[ext_resource type="PackedScene" uid="uid://b6lewbcdasbi6" path="res://prefabs/ui/instructions/start_instructions.tscn" id="12_2bqt7"]
+[ext_resource type="PackedScene" uid="uid://duqlhyoh1g7ny" path="res://prefabs/ring/ring.tscn" id="13_ggns2"]
+[ext_resource type="Texture2D" uid="uid://bck7nsa31tgoo" path="res://sprits/sky_3.png" id="16_b46kb"]
+[ext_resource type="Texture2D" uid="uid://c70gn2eg2o207" path="res://sprits/sky_4.png" id="17_ddpum"]
+[ext_resource type="Texture2D" uid="uid://cahggjtc5k02v" path="res://sprits/big_sky.png" id="17_dv3n3"]
+[ext_resource type="Texture2D" uid="uid://c2gmfkakm8ex6" path="res://sprits/cloud.png" id="18_jkvit"]
+[ext_resource type="Texture2D" uid="uid://bsl0j0cs860bi" path="res://sprits/dome.png" id="19_s4gcc"]
+[ext_resource type="Texture2D" uid="uid://bp6qukcafe0yw" path="res://sprits/helix.png" id="20_rp8t3"]
+[ext_resource type="Texture2D" uid="uid://b5ellmx6ewgnc" path="res://sprits/drill_or_something.png" id="21_v4kuy"]
+[ext_resource type="Texture2D" uid="uid://cqqetbe2rvc1j" path="res://sprits/skull.png" id="22_u4bfm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fny6c"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_icm3q"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_u0ysf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -86)
+zoom = Vector2(5, 5)
+limit_left = -115
+limit_right = 115
+position_smoothing_enabled = true
+position_smoothing_speed = 200.0
+editor_draw_limits = true
+
+[node name="DepthLabel" type="Label" parent="Camera2D"]
+visible = false
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = 5.0
+text = "4 meter"
+label_settings = SubResource("LabelSettings_fny6c")
+horizontal_alignment = 1
+
+[node name="DigAgainLabel" type="RichTextLabel" parent="Camera2D"]
+visible = false
+offset_left = -95.0
+offset_top = -105.0
+offset_right = 96.0
+offset_bottom = -65.0
+bbcode_enabled = true
+text = "[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to Dig again!"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+position = Vector2(0, 86)
+stream = ExtResource("2_u42wh")
+autoplay = true
+
+[node name="Laborer" parent="." instance=ExtResource("1_5h1cq")]
+position = Vector2(-7, -16)
+
+[node name="Grass" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, -4)
+scale = Vector2(1, 1.042)
+texture = ExtResource("3_lgrkf")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 8)
+
+[node name="Dirt Transition" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, 2)
+scale = Vector2(1, 1.042)
+texture = ExtResource("2_hspl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 8)
+
+[node name="Dirt" type="Sprite2D" parent="."]
+z_index = -5
+texture_repeat = 2
+position = Vector2(0, 756)
+texture = ExtResource("4_te3va")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 1500)
+
+[node name="DirtMound" parent="." instance=ExtResource("5_jt253")]
+z_index = -2
+position = Vector2(-78, -4)
+
+[node name="Foreman" parent="." instance=ExtResource("6_bxjrx")]
+position = Vector2(-78, -16)
+
+[node name="DigTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PregameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DigInstructions" parent="." instance=ExtResource("8_uvoqw")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -94.0
+offset_top = -95.0
+offset_right = -94.0
+offset_bottom = -95.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="FlyInstructions" parent="." instance=ExtResource("9_vs4fp")]
+offset_left = -603.0
+offset_top = -105.0
+offset_right = -603.0
+offset_bottom = -105.0
+
+[node name="DigToStart" parent="." instance=ExtResource("10_vm6p5")]
+offset_left = -545.0
+offset_top = -25.0
+offset_right = -545.0
+offset_bottom = -25.0
+
+[node name="RingInstructions" parent="." instance=ExtResource("11_a0uyl")]
+offset_left = -581.0
+offset_top = -68.0
+offset_right = -581.0
+offset_bottom = -68.0
+
+[node name="StartInstructions" parent="." instance=ExtResource("12_2bqt7")]
+offset_left = -70.0
+offset_top = -102.0
+offset_right = -70.0
+offset_bottom = -102.0
+
+[node name="DigCountdown" type="Label" parent="."]
+visible = false
+offset_top = -28.0
+offset_right = 20.0
+offset_bottom = -5.0
+text = "10"
+label_settings = SubResource("LabelSettings_icm3q")
+horizontal_alignment = 1
+
+[node name="Ring1" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(0, -350)
+
+[node name="Ring2" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(0, -700)
+
+[node name="Ring3" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(0, -1050)
+
+[node name="Sky3" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(-146, -1256)
+texture = ExtResource("16_b46kb")
+
+[node name="Sky4" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(-16.5, -3498)
+scale = Vector2(537, 7.968)
+texture = ExtResource("17_ddpum")
+
+[node name="Cloud2" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-70, -765)
+scale = Vector2(0.421417, 0.45508)
+texture = ExtResource("18_jkvit")
+flip_h = true
+
+[node name="Cloud3" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-38, -402)
+scale = Vector2(0.33214, 0.6156)
+texture = ExtResource("18_jkvit")
+flip_h = true
+flip_v = true
+
+[node name="Cloud4" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(65, -133)
+scale = Vector2(0.483459, 0.472656)
+texture = ExtResource("18_jkvit")
+
+[node name="Cloud" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(91, -581)
+scale = Vector2(0.695313, 0.6875)
+texture = ExtResource("18_jkvit")
+
+[node name="BigSky" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(4, -508)
+scale = Vector2(327, 1)
+texture = ExtResource("17_dv3n3")
+
+[node name="Dome" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-92, 238)
+rotation = -6.20468
+texture = ExtResource("19_s4gcc")
+
+[node name="Helix" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(55, 409)
+rotation = -0.801123
+texture = ExtResource("20_rp8t3")
+
+[node name="DrillOrSomething" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(57, 67)
+rotation = 4.25861
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("21_v4kuy")
+
+[node name="Skull" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-25, 594)
+texture = ExtResource("22_u4bfm")
+
+[connection signal="finished" from="Camera2D/AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="finished_jump" from="Foreman" to="." method="_on_foreman_finished_jump"]
+[connection signal="landed" from="Foreman" to="." method="_on_foreman_landed"]
+[connection signal="reset_pressed" from="Foreman" to="." method="_on_foreman_reset_pressed"]
+[connection signal="started_drilling" from="Foreman" to="." method="_on_foreman_started_drilling"]
+[connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]
+[connection signal="timeout" from="PregameTimer" to="." method="_on_pregame_timer_timeout"]

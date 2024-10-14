@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dymc5j5t2mgda"]
+
+[node name="FlyInstructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 225.0
+offset_bottom = 62.0
+bbcode_enabled = true
+text = "[color=#7FC9FF]'Fly'[/color] with [img]res://sprits/tile_0251.png[/img],[img]res://sprits/tile_0039.png[/img], [img]res://sprits/tile_0169.png[/img]/[img]res://sprits/tile_0167.png[/img], or [img]res://sprits/tile_0120.png[/img]/[img]res://sprits/tile_0122.png[/img]
+[center][color=#D8B400]Collect rings[/color] to go faster![/center]"

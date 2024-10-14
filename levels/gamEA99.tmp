@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://b5aq56fqnv4wu"]
+
+[ext_resource type="PackedScene" uid="uid://c8km5xvwn41sj" path="res://prefabs/laborer/laborer.tscn" id="1_5h1cq"]
+[ext_resource type="Script" path="res://levels/game.gd" id="1_u0ysf"]
+[ext_resource type="Texture2D" uid="uid://cdr3bv4k1m4ll" path="res://sprits/grass_to_dirt.png" id="2_hspl4"]
+[ext_resource type="Texture2D" uid="uid://cvxlu87mphrjn" path="res://sprits/grass.png" id="3_lgrkf"]
+[ext_resource type="Texture2D" uid="uid://bgb87mw73j8nk" path="res://sprits/dirt.png" id="4_te3va"]
+[ext_resource type="PackedScene" uid="uid://5fotyekauvmt" path="res://prefabs/dirt_mound/dirt_mound.tscn" id="5_jt253"]
+[ext_resource type="PackedScene" uid="uid://bia21mchvd5gy" path="res://prefabs/foreman/foreman.tscn" id="6_bxjrx"]
+[ext_resource type="PackedScene" uid="uid://c5y3lm1ekin8i" path="res://prefabs/ui/instructions/dig_instructions.tscn" id="8_uvoqw"]
+[ext_resource type="PackedScene" uid="uid://dymc5j5t2mgda" path="res://prefabs/ui/instructions/fly_instructions.tscn" id="9_vs4fp"]
+[ext_resource type="PackedScene" uid="uid://cvqnn88iyev7d" path="res://prefabs/ui/instructions/dig_to_start.tscn" id="10_vm6p5"]
+[ext_resource type="PackedScene" uid="uid://dpvb4fcy14nar" path="res://prefabs/ui/instructions/ring_instructions.tscn" id="11_a0uyl"]
+[ext_resource type="PackedScene" uid="uid://b6lewbcdasbi6" path="res://prefabs/ui/instructions/start_instructions.tscn" id="12_2bqt7"]
+[ext_resource type="PackedScene" uid="uid://duqlhyoh1g7ny" path="res://prefabs/ring/ring.tscn" id="13_ggns2"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_u0ysf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -60)
+zoom = Vector2(5, 5)
+limit_left = -115
+limit_right = 115
+position_smoothing_speed = 200.0
+editor_draw_limits = true
+
+[node name="Laborer" parent="." instance=ExtResource("1_5h1cq")]
+position = Vector2(-7, -16)
+
+[node name="Grass" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, -4)
+scale = Vector2(1, 1.042)
+texture = ExtResource("3_lgrkf")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 8)
+
+[node name="Dirt Transition" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, 2)
+scale = Vector2(1, 1.042)
+texture = ExtResource("2_hspl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 8)
+
+[node name="Dirt" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(0, 756)
+texture = ExtResource("4_te3va")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 1500)
+
+[node name="DirtMound" parent="." instance=ExtResource("5_jt253")]
+z_index = -2
+position = Vector2(-78, -4)
+
+[node name="Foreman" parent="." instance=ExtResource("6_bxjrx")]
+position = Vector2(-78, -16)
+
+[node name="DigTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PregameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DigInstructions" parent="." instance=ExtResource("8_uvoqw")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -94.0
+offset_top = -95.0
+offset_right = -94.0
+offset_bottom = -95.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="FlyInstructions" parent="." instance=ExtResource("9_vs4fp")]
+offset_left = -492.0
+offset_top = -80.0
+offset_right = -492.0
+offset_bottom = -80.0
+
+[node name="DigToStart" parent="." instance=ExtResource("10_vm6p5")]
+offset_left = -427.0
+offset_top = -30.0
+offset_right = -427.0
+offset_bottom = -30.0
+
+[node name="RingInstructions" parent="." instance=ExtResource("11_a0uyl")]
+offset_left = -492.0
+offset_top = -57.0
+offset_right = -492.0
+offset_bottom = -57.0
+
+[node name="StartInstructions" parent="." instance=ExtResource("12_2bqt7")]
+offset_left = -72.0
+offset_top = -75.0
+offset_right = -72.0
+offset_bottom = -75.0
+
+[node name="Ring1" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(11, -105)
+
+[node name="Ring2" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(24, -650)
+
+[node name="Ring3" parent="." instance=ExtResource("13_ggns2")]
+position = Vector2(-15, -1050)
+
+[connection signal="finished_jump" from="Foreman" to="." method="_on_foreman_finished_jump"]
+[connection signal="landed" from="Foreman" to="." method="_on_foreman_landed"]
+[connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]
+[connection signal="timeout" from="PregameTimer" to="." method="_on_pregame_timer_timeout"]
