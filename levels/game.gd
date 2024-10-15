@@ -4,7 +4,11 @@ extends Node2D
 @onready var laborer = $Laborer
 @onready var foreman = $Foreman
 @onready var dirtMound = $DirtMound
-@onready var audio = $Camera2D/AudioStreamPlayer2D
+
+@onready var digBGM = $Camera2D/DigBGMPlayer
+@onready var ascendBGM = $Camera2D/AscendBGMPlayer
+@onready var skydiveBGM = $Camera2D/SkydiveBGMPlayer
+@onready var postGameBGM = $Camera2D/PostGameBGMPlayer
 
 @onready var pregameTimer = $PregameTimer
 @onready var digTimer = $DigTimer
@@ -23,16 +27,13 @@ var cameraStartPosition: Vector2
 var foremanStartPosition: Vector2
 var dirtMoundStartPosition: Vector2
 
+#var audioPlayerToLoop: AudioStreamPlayer2D = digBGM
+
 var cameraSpeed = 1
 const startCameraSpeed = 1
 const maxCameraSpeed = 100
 
 var foremanJumpProgress = 0
-
-var digBGM = preload("res://audio/bgm/Juhani Junkala [Chiptune Adventures] 2. Stage 2.ogg")
-var ascendBGM = preload("res://audio/bgm/Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg")
-var skydiveBGM = preload("res://audio/bgm/Juhani Junkala [Chiptune Adventures] 3. Boss Fight.ogg")
-var postGameBGM = preload("res://audio/bgm/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg")
 
 var hasPregameCountdownStarted = false
 var isAscending = false
@@ -67,8 +68,11 @@ func reset():
 	foreman.position = foremanStartPosition
 	dirtMound.position = dirtMoundStartPosition
 	
-	audio.stream = digBGM
-	audio.play()
+	digBGM.play()
+	ascendBGM.stop()
+	skydiveBGM.stop()
+	postGameBGM.stop()
+	#audioPlayerToLoop = digBGM
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -119,20 +123,23 @@ func _on_pregame_timer_timeout():
 
 func _on_dig_timer_timeout():
 	laborer.setCanDig(false)
-	audio.stream = ascendBGM
-	audio.play()
+	digBGM.stop()
+	ascendBGM.play()
+	#audioPlayerToLoop = ascendBGM
 	isAscending = true
 	
 func _on_foreman_finished_jump():
-	audio.stream = skydiveBGM
-	audio.play()
+	ascendBGM.stop()
+	skydiveBGM.play()
+	#audioPlayerToLoop = skydiveBGM
 	isSkydiving = true
 
 func _on_foreman_landed():
 	drillDepthLabel.visible = true
 	digAgainLabel.visible = true
-	audio.stream = postGameBGM
-	audio.play()
+	skydiveBGM.stop()
+	postGameBGM.play()
+	#audioPlayerToLoop = postGameBGM
 
 func _on_foreman_started_drilling():
 	isSkydiving = false
@@ -141,5 +148,14 @@ func _on_foreman_started_drilling():
 func _on_foreman_reset_pressed():
 	reset()
 
-func _on_audio_stream_player_2d_finished():
-	audio.play()
+func _on_dig_bgm_player_finished():
+	digBGM.play()
+
+func _on_ascend_bgm_player_finished():
+	ascendBGM.play()
+
+func _on_skydive_bgm_player_finished():
+	skydiveBGM.play()
+
+func _on_post_game_bgm_player_finished():
+	postGameBGM.play()
