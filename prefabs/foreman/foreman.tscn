@@ -67,13 +67,13 @@ shape = SubResource("CapsuleShape2D_we4ex")
 sprite_frames = SubResource("SpriteFrames_m0dt8")
 animation = &"idle"
 
-[node name="GitAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+[node name="GitAudio" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/Foreman"]
 stream = ExtResource("6_r83qn")
 
-[node name="JumpAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+[node name="JumpAudio" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/Foreman"]
 stream = ExtResource("7_xj1gd")
 
-[node name="DrillAudio" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Foreman"]
+[node name="DrillAudio" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/Foreman"]
 stream = ExtResource("8_ak20f")
 
 [connection signal="finished_jump" from="Path2D/PathFollow2D/Foreman" to="." method="_on_foreman_finished_jump"]

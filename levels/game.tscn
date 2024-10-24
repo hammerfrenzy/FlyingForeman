@@ -26,60 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://b5ellmx6ewgnc" path="res://sprits/drill_or_something.png" id="21_v4kuy"]
 [ext_resource type="Texture2D" uid="uid://cqqetbe2rvc1j" path="res://sprits/skull.png" id="22_u4bfm"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_fny6c"]
+[sub_resource type="LabelSettings" id="LabelSettings_icm3q"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_icm3q"]
+[sub_resource type="LabelSettings" id="LabelSettings_fny6c"]
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u0ysf")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -86)
-zoom = Vector2(5, 5)
-limit_left = -115
-limit_right = 115
-position_smoothing_enabled = true
-position_smoothing_speed = 200.0
-editor_draw_limits = true
-
-[node name="DepthLabel" type="Label" parent="Camera2D"]
-visible = false
-offset_left = -115.0
-offset_top = -18.0
-offset_right = 115.0
-offset_bottom = 5.0
-text = "4 meter"
-label_settings = SubResource("LabelSettings_fny6c")
-horizontal_alignment = 1
-
-[node name="DigAgainLabel" type="RichTextLabel" parent="Camera2D"]
-visible = false
-offset_left = -95.0
-offset_top = -105.0
-offset_right = 96.0
-offset_bottom = -65.0
-bbcode_enabled = true
-text = "[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to Dig again!"
-
-[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
-
-[node name="DigBGMPlayer" type="AudioStreamPlayer2D" parent="Camera2D"]
-position = Vector2(0, 86)
-stream = ExtResource("2_u42wh")
-autoplay = true
-
-[node name="AscendBGMPlayer" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = ExtResource("3_c1ka4")
-
-[node name="SkydiveBGMPlayer" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = ExtResource("4_db5cc")
-
-[node name="PostGameBGMPlayer" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = ExtResource("5_oesh6")
 
 [node name="Laborer" parent="." instance=ExtResource("1_5h1cq")]
 position = Vector2(-7, -16)
@@ -245,10 +201,47 @@ z_index = -2
 position = Vector2(-25, 594)
 texture = ExtResource("22_u4bfm")
 
-[connection signal="finished" from="Camera2D/DigBGMPlayer" to="." method="_on_dig_bgm_player_finished"]
-[connection signal="finished" from="Camera2D/AscendBGMPlayer" to="." method="_on_ascend_bgm_player_finished"]
-[connection signal="finished" from="Camera2D/SkydiveBGMPlayer" to="." method="_on_skydive_bgm_player_finished"]
-[connection signal="finished" from="Camera2D/PostGameBGMPlayer" to="." method="_on_post_game_bgm_player_finished"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -86)
+zoom = Vector2(5, 5)
+limit_left = -115
+limit_right = 115
+position_smoothing_enabled = true
+position_smoothing_speed = 200.0
+editor_draw_limits = true
+
+[node name="DepthLabel" type="Label" parent="Camera2D"]
+visible = false
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = 5.0
+text = "4 meter"
+label_settings = SubResource("LabelSettings_fny6c")
+horizontal_alignment = 1
+
+[node name="DigAgainLabel" type="RichTextLabel" parent="Camera2D"]
+visible = false
+offset_left = -95.0
+offset_top = -105.0
+offset_right = 96.0
+offset_bottom = -65.0
+bbcode_enabled = true
+text = "[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to Dig again!"
+
+[node name="DigBGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u42wh")
+autoplay = true
+
+[node name="AscendBGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c1ka4")
+
+[node name="SkydiveBGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_db5cc")
+
+[node name="PostGameBGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oesh6")
+
 [connection signal="finished_jump" from="Foreman" to="." method="_on_foreman_finished_jump"]
 [connection signal="landed" from="Foreman" to="." method="_on_foreman_landed"]
 [connection signal="reset_pressed" from="Foreman" to="." method="_on_foreman_reset_pressed"]

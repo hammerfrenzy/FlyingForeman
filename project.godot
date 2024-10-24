@@ -13,7 +13,7 @@ config_version=5
 config/name="FlyingForeman"
 run/main_scene="res://levels/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://sprits/icon.png"
 
 [display]
 
@@ -56,3 +56,4 @@ Right={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

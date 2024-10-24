@@ -5,10 +5,10 @@ extends Node2D
 @onready var foreman = $Foreman
 @onready var dirtMound = $DirtMound
 
-@onready var digBGM = $Camera2D/DigBGMPlayer
-@onready var ascendBGM = $Camera2D/AscendBGMPlayer
-@onready var skydiveBGM = $Camera2D/SkydiveBGMPlayer
-@onready var postGameBGM = $Camera2D/PostGameBGMPlayer
+@onready var digBGM = $DigBGMPlayer
+@onready var ascendBGM = $AscendBGMPlayer
+@onready var skydiveBGM = $SkydiveBGMPlayer
+@onready var postGameBGM = $PostGameBGMPlayer
 
 @onready var pregameTimer = $PregameTimer
 @onready var digTimer = $DigTimer
@@ -26,8 +26,6 @@ const COUNTDOWN_TIME = 3
 var cameraStartPosition: Vector2
 var foremanStartPosition: Vector2
 var dirtMoundStartPosition: Vector2
-
-#var audioPlayerToLoop: AudioStreamPlayer2D = digBGM
 
 var cameraSpeed = 1
 const startCameraSpeed = 1
@@ -72,7 +70,6 @@ func reset():
 	ascendBGM.stop()
 	skydiveBGM.stop()
 	postGameBGM.stop()
-	#audioPlayerToLoop = digBGM
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -93,8 +90,10 @@ func _process(delta):
 		digCountdownLabel.text = str(roundf(digTimer.time_left))
 	
 	if isAscending and (camera.position.y > foreman.position.y - 25):
-		camera.position += Vector2.UP * delta * cameraSpeed
+		var movement = Vector2.UP * delta * cameraSpeed
+		camera.position = camera.position + movement
 		cameraSpeed = minf(cameraSpeed + (100 * delta), maxCameraSpeed)
+		print(camera.position)
 	elif isAscending:
 		prepareForSkydive()
 	elif isSkydiving:
@@ -125,13 +124,11 @@ func _on_dig_timer_timeout():
 	laborer.setCanDig(false)
 	digBGM.stop()
 	ascendBGM.play()
-	#audioPlayerToLoop = ascendBGM
 	isAscending = true
 	
 func _on_foreman_finished_jump():
 	ascendBGM.stop()
 	skydiveBGM.play()
-	#audioPlayerToLoop = skydiveBGM
 	isSkydiving = true
 
 func _on_foreman_landed():
@@ -139,7 +136,6 @@ func _on_foreman_landed():
 	digAgainLabel.visible = true
 	skydiveBGM.stop()
 	postGameBGM.play()
-	#audioPlayerToLoop = postGameBGM
 
 func _on_foreman_started_drilling():
 	isSkydiving = false
@@ -147,15 +143,3 @@ func _on_foreman_started_drilling():
 
 func _on_foreman_reset_pressed():
 	reset()
-
-func _on_dig_bgm_player_finished():
-	digBGM.play()
-
-func _on_ascend_bgm_player_finished():
-	ascendBGM.play()
-
-func _on_skydive_bgm_player_finished():
-	skydiveBGM.play()
-
-func _on_post_game_bgm_player_finished():
-	postGameBGM.play()
