@@ -14,5 +14,5 @@ offset_top = 2.0
 offset_right = 225.0
 offset_bottom = 62.0
 bbcode_enabled = true
-text = "[color=#7FC9FF]'Fly'[/color] with [img]res://sprits/tile_0251.png[/img],[img]res://sprits/tile_0039.png[/img], [img]res://sprits/tile_0169.png[/img]/[img]res://sprits/tile_0167.png[/img], or [img]res://sprits/tile_0120.png[/img]/[img]res://sprits/tile_0122.png[/img]
+text = "                [color=#7FC9FF]'Fly'[/color] with [img]res://sprits/tile_0251.png[/img]
 [center][color=#D8B400]Collect rings[/color] to go faster![/center]"

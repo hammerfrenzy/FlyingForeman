@@ -222,12 +222,12 @@ horizontal_alignment = 1
 
 [node name="DigAgainLabel" type="RichTextLabel" parent="Camera2D"]
 visible = false
-offset_left = -95.0
-offset_top = -105.0
-offset_right = 96.0
+offset_left = -116.0
+offset_top = -93.0
+offset_right = 152.0
 offset_bottom = -65.0
 bbcode_enabled = true
-text = "[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to Dig again!"
+text = "Press any button to Dig again!"
 
 [node name="DigBGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_u42wh")

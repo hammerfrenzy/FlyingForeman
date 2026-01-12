@@ -14,4 +14,4 @@ offset_left = 1.0
 offset_right = 196.0
 offset_bottom = 27.0
 bbcode_enabled = true
-text = "Press any Button to start"
+text = "Press any button to start"
