@@ -32,7 +32,7 @@ func _on_timer_timeout():
 		return
 	
 	timeLeft -= 1
-	countdownLabel.text = str(timeLeft)
+	countdownLabel.text = str(int(timeLeft))
 	
 	if timeLeft > 0:
 		audio.play()

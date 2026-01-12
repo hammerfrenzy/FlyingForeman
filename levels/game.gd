@@ -87,7 +87,9 @@ func _process(delta):
 		startInstructions.visible = false
 	
 	if !digTimer.is_stopped():
-		digCountdownLabel.text = str(roundf(digTimer.time_left))
+		digCountdownLabel.text = str(int(ceil(digTimer.time_left)))
+	else:
+		digCountdownLabel.text = ""
 	
 	if isAscending and (camera.position.y > foreman.position.y - 25):
 		var movement = Vector2.UP * delta * cameraSpeed
@@ -101,7 +103,7 @@ func _process(delta):
 	elif isDrilling:
 		var dirtHeight = abs(dirtMound.position.y - dirtMoundStartPosition.y)
 		var drillDepth = abs(roundf(foreman.get_foreman().get_drill_depth()))
-		drillDepthLabel.text = str("Climbed " + str(dirtHeight) + " Meters\nDrilled " + str(drillDepth) + " Meters")
+		drillDepthLabel.text = str("Climbed " + str(int(dirtHeight)) + " Meters\nDrilled " + str(int(drillDepth)) + " Meters")
 		camera.position += Vector2.DOWN * delta * foreman.get_falling_speed()
 		camera.offset.y = move_toward(camera.offset.y, -50, 50 * delta)
 		

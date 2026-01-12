@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://b5aq56fqnv4wu"]
 
 [ext_resource type="PackedScene" uid="uid://c8km5xvwn41sj" path="res://prefabs/laborer/laborer.tscn" id="1_5h1cq"]
-[ext_resource type="Script" path="res://levels/game.gd" id="1_u0ysf"]
+[ext_resource type="Script" uid="uid://ci1cc0tf0nfaf" path="res://levels/game.gd" id="1_u0ysf"]
 [ext_resource type="Texture2D" uid="uid://cdr3bv4k1m4ll" path="res://sprits/grass_to_dirt.png" id="2_hspl4"]
 [ext_resource type="AudioStream" uid="uid://cigjy82xe4qg6" path="res://audio/bgm/Juhani Junkala [Chiptune Adventures] 2. Stage 2.ogg" id="2_u42wh"]
 [ext_resource type="AudioStream" uid="uid://c3cgie70pewse" path="res://audio/bgm/Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg" id="3_c1ka4"]
