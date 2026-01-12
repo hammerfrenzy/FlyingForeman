@@ -95,7 +95,6 @@ func _process(delta):
 		var movement = Vector2.UP * delta * cameraSpeed
 		camera.position = camera.position + movement
 		cameraSpeed = minf(cameraSpeed + (100 * delta), maxCameraSpeed)
-		print(camera.position)
 	elif isAscending:
 		prepareForSkydive()
 	elif isSkydiving:

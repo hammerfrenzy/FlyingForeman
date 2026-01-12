@@ -11,7 +11,7 @@ grow_vertical = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 1.0
-offset_right = 173.0
+offset_right = 196.0
 offset_bottom = 27.0
 bbcode_enabled = true
-text = "[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to start"
+text = "Press any Button to start"

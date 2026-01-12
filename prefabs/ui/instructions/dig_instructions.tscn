@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5y3lm1ekin8i"]
 
-[ext_resource type="Script" path="res://prefabs/ui/instructions/dig_instructions.gd" id="1_e5gkr"]
+[ext_resource type="Script" uid="uid://byv1pgvgo67hf" path="res://prefabs/ui/instructions/dig_instructions.gd" id="1_e5gkr"]
 [ext_resource type="AudioStream" uid="uid://bl8koonf6e7wu" path="res://audio/sfx/countdown.wav" id="2_mpg0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ueees"]
@@ -23,7 +23,7 @@ offset_left = 1.0
 offset_right = 193.0
 offset_bottom = 30.0
 bbcode_enabled = true
-text = "Mash[img]res://sprits/tile_0312.png[/img] or [img]res://sprits/tile_0235.png[/img][img]res://sprits/tile_0236.png[/img][img]res://sprits/tile_0237.png[/img] to [color=#733d1f]Dig[/color]!"
+text = "Mash buttons to [color=#733d1f]Dig[/color]!"
 
 [node name="Countdown" type="Label" parent="."]
 layout_mode = 0

@@ -110,7 +110,7 @@ offset_right = -581.0
 offset_bottom = -68.0
 
 [node name="StartInstructions" parent="." instance=ExtResource("12_2bqt7")]
-offset_left = -70.0
+offset_left = -95.0
 offset_top = -102.0
 offset_right = -70.0
 offset_bottom = -102.0
